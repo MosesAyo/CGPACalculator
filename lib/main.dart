@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-
+import 'calculate.dart';
+import 'register.dart';
+import 'login.dart';
+import 'records.dart';
+import 'addRecord.dart';
+import 'global.dart' as global;
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -9,6 +13,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'CGPA CALCULATOR',
+      initialRoute: global.token != ""?'/records': '/',
+        routes: {
+          // When navigating to the "/" route, build the FirstScreen widget.
+          '/': (context) => Register(),
+          // When navigating to the "/second" route, build the SecondScreen widget.
+          '/login': (context)=> Login(),
+          '/records': (context) => Records(),
+          '/addrecord': (context) => AddRecord()
+        },
       // theme: ThemeData(
       //   // This is the theme of your application.
       //   //
@@ -21,7 +34,7 @@ class MyApp extends StatelessWidget {
       //   // is not restarted.
       //   primarySwatch: Colors.blue,
       // ),
-      home: Home(),
+      // home: Register(),
     );
   }
 }
@@ -46,6 +59,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+
 
   void _incrementCounter() {
     setState(() {
