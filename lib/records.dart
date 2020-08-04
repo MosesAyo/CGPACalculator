@@ -237,6 +237,7 @@ class _Records extends State<Records>{
 
                               ],
                             ),
+
                             Container(
                               width: 23,
                               child: FlatButton(
@@ -250,6 +251,12 @@ class _Records extends State<Records>{
                                 )
                             )
                         ],),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top:10),
+                          width: MediaQuery.of(context).size.width,
+                          child:
+                            Text("CGPA: $cgpa", style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                     ]
                     ,)
