@@ -25,6 +25,22 @@ class _Login extends State<Login> {
   bool _emailIsValid = false;
   bool _passwordIsValid = false;
 
+    showAlertDialog(BuildContext context){
+    AlertDialog alert=AlertDialog(
+      content: new Row(
+          children: [
+            CircularProgressIndicator(),
+            Container(margin: EdgeInsets.only(left: 5),child:Text("Loading" )),
+          ],),
+    );
+    showDialog(barrierDismissible: false,
+      context:context,
+      builder:(BuildContext context){
+        return alert;
+      },
+    );
+  }
+
   
 
   @override
@@ -193,6 +209,7 @@ class _Login extends State<Login> {
   }
 
   Future<http.Response> login(String email, String password) async {
+    showAlertDialog(context);
     // email = 'studentmoses@email.com';
     // password = '09876543';
     bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
@@ -230,14 +247,17 @@ class _Login extends State<Login> {
           setState(() {
             global.token = responseObject[0]['token'];
           });
+          Navigator.pop(context);
           Navigator.pushNamedAndRemoveUntil(context, '/records', (Route<dynamic> route) => false);
 
         }else if (response.statusCode == 404){
+          Navigator.pop(context);
           setState(() {
             _loginSuccess = "";
             _loginError = "User not found.";
           });
         }else if(response.statusCode == 400){
+          Navigator.pop(context);
           var error = response.body;
             print(error);
           setState(() {

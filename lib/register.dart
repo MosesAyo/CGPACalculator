@@ -23,6 +23,22 @@ class _Register extends State<Register> {
   String _registerError;
   bool _registerSuccess = false;
 
+  showAlertDialog(BuildContext context){
+    AlertDialog alert=AlertDialog(
+      content: new Row(
+          children: [
+            CircularProgressIndicator(),
+            Container(margin: EdgeInsets.only(left: 5),child:Text("Loading" )),
+          ],),
+    );
+    showDialog(barrierDismissible: false,
+      context:context,
+      builder:(BuildContext context){
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -218,6 +234,7 @@ class _Register extends State<Register> {
     }
 
     if (emailValid && validateEntry && password.length>=6){
+        showAlertDialog(context);
         List responseObject = [];
         final response = await http.post(
             'https://murmuring-caverns-42248.herokuapp.com/api/users/register',
@@ -239,10 +256,12 @@ class _Register extends State<Register> {
 
           responseObject.add(json.decode(response.body));
           print(response.statusCode);
+          Navigator.pop(context);
           Navigator.push(context, MaterialPageRoute(builder: (context)=> Login()));
 
         }
         else if(response.statusCode == 400){
+            Navigator.pop(context);
             responseObject.add(json.decode(response.body));
             setState(() {
               _registerSuccess = false;

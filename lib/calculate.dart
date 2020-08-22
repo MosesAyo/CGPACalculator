@@ -39,6 +39,22 @@ void initState() {
 
   final courseCodeText = TextEditingController();
 
+  showAlertDialog(BuildContext context){
+    AlertDialog alert=AlertDialog(
+      content: new Row(
+          children: [
+            CircularProgressIndicator(),
+            Container(margin: EdgeInsets.only(left: 5),child:Text("Loading" )),
+          ],),
+    );
+    showDialog(barrierDismissible: false,
+      context:context,
+      builder:(BuildContext context){
+        return alert;
+      },
+    );
+  }
+
   Future<void> checkSemester() async{
     if (global.choosenSemester==1){
        _currentSemester = "1st Semester";
@@ -611,6 +627,7 @@ void initState() {
         statusText = Text("All fields must be filled", style: TextStyle(color: Colors.red, fontSize: 12,),);
       });
     } else{
+      showAlertDialog(context);
       var response = await http.post(
               'https://murmuring-caverns-42248.herokuapp.com/api/users/results',
               headers: <String, String>{
@@ -636,6 +653,7 @@ void initState() {
             status = true;
             statusText = Text("Success", style: TextStyle(color: Colors.green, fontSize: 12,),);
           });
+          Navigator.pop(context);
           Navigator.pushNamedAndRemoveUntil(context, '/records', (Route<dynamic> route) => false);
         }
 

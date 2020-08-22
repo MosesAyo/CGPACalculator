@@ -344,10 +344,10 @@ class _Records extends State<Records>{
                               Navigator.push(context, MaterialPageRoute(builder: (context)=> SelectedRecord()));
                             },
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text("${results[index].level} level"),
-                                Text("0.00")
+                                // Text("0.00")
                             ],),
                           )
                           );
