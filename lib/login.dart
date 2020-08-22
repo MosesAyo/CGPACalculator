@@ -104,6 +104,18 @@ class _Login extends State<Login> {
                                     ),
                         ),
 
+                        Container(
+                          child:
+                            FlatButton(
+                              onPressed: (){
+                                Navigator.pushNamed(context, '/resetToken');
+                              },
+                              padding: EdgeInsets.all(0),
+                              child: Text("Forgot password?", style: TextStyle(color:Color(0xff00a57c)))
+                            )
+                        ),
+
+
                         // Next line tells the user if there is an error and what the error is >>>>>>>>>>>>>>>>>>>>>>>>>>
                         // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

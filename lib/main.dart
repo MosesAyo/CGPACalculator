@@ -4,6 +4,8 @@ import 'register.dart';
 import 'login.dart';
 import 'records.dart';
 import 'addRecord.dart';
+import 'resetToken.dart';
+import 'resetPassword.dart';
 import 'global.dart' as global;
 void main() => runApp(MyApp());
 
@@ -20,7 +22,9 @@ class MyApp extends StatelessWidget {
           // When navigating to the "/second" route, build the SecondScreen widget.
           '/login': (context)=> Login(),
           '/records': (context) => Records(),
-          '/addrecord': (context) => AddRecord()
+          '/addrecord': (context) => AddRecord(),
+          '/resetToken': (context) => ResetToken(),
+          '/resetPassword': (context) => ResetPasword()
         },
       // theme: ThemeData(
       //   // This is the theme of your application.

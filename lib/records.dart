@@ -23,6 +23,7 @@ class _Records extends State<Records>{
   bool _showLevel = true;
   bool _showSemester = false;
   bool _showOverlay = false;
+  bool _hasCgpa = false;
   bool loading = true;
   bool _currentResult = false;
   List _allCourses = [];
@@ -86,6 +87,9 @@ class _Records extends State<Records>{
               List _secondSemesterCoures = [results[eachResult].semester][0]['second']['courses'];
               List _secondSemesterCreditUnits = [results[eachResult].semester][0]['second']['creditUnits'];
               List _secondSemesterGrades = [results[eachResult].semester][0]['second']['grades'];
+              if (_firstSemesterCoures.length>0 && _secondSemesterCoures.length>0) {setState(() {
+                _hasCgpa = true;
+              });}
               if (_firstSemesterCoures.length>0){
                 for(var eachCourse = 0; eachCourse < _firstSemesterCoures.length; eachCourse++){
                   _allCourses.add(_firstSemesterCoures[eachCourse]);
@@ -163,13 +167,13 @@ class _Records extends State<Records>{
               // print([results[eachResult].semester][0]['second']['courses']);
             }
 
-            setState((){
-                int creditUnitSum = _allCourseUnits.reduce((a,b)=>a+b);
+            if(_hasCgpa) setState((){
+              int creditUnitSum = _allCourseUnits.reduce((a,b)=>a+b);
                 print(creditUnitSum);
                 getCGPA = getMultiples.reduce((a, b) => a + b)/creditUnitSum;
                 cgpa = f.format(getCGPA);
                 print("CGPA $cgpa");
-              });
+            });
 
               print(_allCourses);
               print(_allGrades);
@@ -420,6 +424,7 @@ class _Records extends State<Records>{
                                           onPressed: (){
                                             setState((){
                                               global.token = "";
+                                              cgpa = "";
                                             });
                                             Navigator.pushNamedAndRemoveUntil(context, '/login', (Route<dynamic> route) => false);
                                           }, 

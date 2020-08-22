@@ -568,34 +568,34 @@ void initState() {
                       ],
                       ),
                   ),
-                  Container(
-                    margin: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey[400],
-                          offset: Offset(0.0, 0.0), //(x,y)
-                          blurRadius: 10.0,
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(15)
-                    ),
-                    height: 70,
-                    width: 70,
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text("CGPA", style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text("$cgpa", style:TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
-                      ],
-                      ),
-                  )
+                  // Container(
+                  //   margin: EdgeInsets.all(10),
+                  //   decoration: BoxDecoration(
+                  //     color: Colors.white,
+                  //     boxShadow: [
+                  //       BoxShadow(
+                  //         color: Colors.grey[400],
+                  //         offset: Offset(0.0, 0.0), //(x,y)
+                  //         blurRadius: 10.0,
+                  //       ),
+                  //     ],
+                  //     borderRadius: BorderRadius.circular(15)
+                  //   ),
+                  //   height: 70,
+                  //   width: 70,
+                  //   child: Column(
+                  //     children: <Widget>[
+                  //       SizedBox(
+                  //         height: 15,
+                  //       ),
+                  //       Text("CGPA", style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),),
+                  //       SizedBox(
+                  //         height: 10,
+                  //       ),
+                  //       Text("$cgpa", style:TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
+                  //     ],
+                  //     ),
+                  // )
               ],),
             )
           ],
